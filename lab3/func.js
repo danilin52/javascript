@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * Возвращает x в степени n (n - целое число).
  * @param {number} x - Основание степени.
@@ -26,6 +27,8 @@ function pow(x, n) {
  */
 const sumTo = new Function('n', 'return n * (n + 1) / 2');
 
+// console.log(sumTo(100)); // 5050
+
 /**
  * Проверяет год на високосность.
  * @param {number} year - Год для проверки.
@@ -36,29 +39,37 @@ function isLeapYear(year) {
 }
 
 /**
- * Возвращает факториал числа n (рекурсивно).
- * @param {number} n - Число для вычисления факториала.
- * @returns {bigint} Факториал числа n.
- */
+* Возвращает факториал числа n.
+*
+* @param {number} n число, для которого находится факториал
+* @return {number} факториал числа n!
+*/
 function factorial(n) {
-    if (n === 0) return 1n;
-    return BigInt(n) * factorial(n - 1);
+  if (n === 0)
+    return 1n;
+  return BigInt(n) * factorial(n - 1);
 }
 
+// Функция fib(n), возвращающая n-е число Фибоначчи
 /**
- * Возвращает n-е число Фибоначчи.
- * @param {number} n - Номер числа Фибоначчи.
- * @returns {bigint} n-е число Фибоначчи.
+ * Возвращает n-ое число Фибоначчи.
+ *
+ * @param {number} n номер искомого числа Фибоначчи
+ * @return {BigInt} n-oe число Фибоначчи
  */
-function fib(n) {
-    let a = 0n;
-    let b = 1n;
-    if (n === 0) return a;
-    for (let i = 2; i <= n; i++) {
-        [a, b] = [b, a + b];
-    }
-    return b;
+export function fib(n) {
+  let a = 0n;
+  let b = 1n;
+  for (let i = 0; i < n; i++) {
+    let temp = b;
+    b = a + b;
+    a = temp;
+  }
+  return a;
 }
+
+console.log(fib(0));   // 0n
+console.log(fib(100)); // 354224848179261915075n
 
 /**
  * Возвращает функцию, которая сравнивает свой аргумент с x.
@@ -82,12 +93,3 @@ function sum(...args) {
     return args.reduce((acc, val) => acc + val, 0);
 }
 
-/**
- * Добавляет символьное свойство blackSpot к объекту.
- * @param {Object} obj - Объект, к которому добавляется свойство.
- * @returns {Object} Объект с добавленным свойством blackSpot.
- */
-function addBlackSpot(obj) {
-    obj[Symbol.for('blackSpot')] = true;
-    return obj;
-}
