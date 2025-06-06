@@ -1,4 +1,3 @@
-
 'use strict';
 
 class Book {
@@ -14,7 +13,7 @@ class Book {
 
     set title(text) {
         if (typeof text !== 'string' || text.trim() === '') {
-            throw new Error('Title must be a non-empty string.');
+            throw new Error('Название не может быть пустым');
         }
         this._title = text.trim();
     }
@@ -25,7 +24,7 @@ class Book {
 
     set pubYear(newPubYear) {
         if (typeof newPubYear !== 'number' || newPubYear <= 0 || !Number.isInteger(newPubYear)) {
-            throw new Error('pubYear must be a positive integer.');
+            throw new Error('Год издания должен быть положительным числом');
         }
         this._pubYear = newPubYear;
     }
@@ -36,7 +35,7 @@ class Book {
 
     set price(newPrice) {
         if (typeof newPrice !== 'number' || newPrice <= 0) {
-            throw new Error('Price must be a positive number.');
+            throw new Error('Цена должна быть положительным числом');
         }
         this._price = newPrice;
     }
@@ -53,16 +52,16 @@ class Book {
 }
 
 try {
-    let book1 = new Book('1984', 1949, 1000);
+    let book1 = new Book('JavaScript', 1995, 1000);
     book1.show();
     book1.price = 1900;
     book1.show();
 
     console.log("Цена book1:", book1.price);
 
-    let book2 = new Book('To Kill a Mockingbird', 1960, 890);
+    let book2 = new Book('Библия', 2025, 1217);
     book2.show();
-    let book3 = new Book('1984', 1949, 250);
+    let book3 = new Book('Моя борьба', 1924, 782);
     book3.show();
 
     let books = [book1, book2, book3];
